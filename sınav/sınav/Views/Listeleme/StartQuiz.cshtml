@@ -1,0 +1,113 @@
+﻿@model List<sınav.Data.Model.Question>
+@{
+    ViewData["Title"] = "StartQuiz";
+}
+
+
+<form class="form-group" method="post">
+    
+        <div></div>
+        <div id="commentsAdd">
+            <div id="respond" class="box m-t-6">
+                <div id="respond" class="comment-respond">
+
+                    <label for="l3">metin</label>
+                    <a rel="nofollow" id="cancel-comment-reply-link" href="/html-tablo-olusturma-nasil-yapilir/#respond" style="display:none;">Cevabı iptal et</a>
+                    <p class="comment-form-comment"><textarea id="comment" name="comment" cols="100" rows="8" aria-required="true" placeholder="Comment Text*"></textarea></p><p class="comment-form-author">
+                 1) @foreach (var question in Model)
+                  {
+                         <label for="l3" >@question.Question1</label>
+                         
+                         
+                     }
+</p>
+  
+                    <p class="comment-form-email">
+                    <label for="l3">metin</label> <input id="email" name="Question12" type="text" placeholder="B)" value="" size="46"></p>
+                    <p class="comment-form-url">
+                        <input id="url" name="Question13" type="text" placeholder="Question13" value="" size="46"> <input id="email" name="Question14" type="text" placeholder="D)" value="" size="46">
+                        <br /><br />
+                        <input id="email" name="QuestionAns1" type="text" placeholder="Doğru Cevap Seç" value="" style="margin-left:175px;" size="46">
+
+
+                        <br /><br />
+
+                        <input id="author" name="Question2" type="text" placeholder="Soru 2" value="" size="98">
+                    </p>
+
+                    <p class="comment-form-email"><input id="email" name="Question21" type="text" placeholder="A)" value="" size="46"> <input id="email" name="Question22" type="text" placeholder="B)" value="" size="46"></p>
+                    <p class="comment-form-url">
+                        <input id="url" name="Question23" type="text" placeholder="C)" value="" size="46"> <input id="email" name="Question24" type="text" placeholder="D)" value="" size="46">
+
+                        <br /><br />
+                        <input id="email" name="QuestionAns2" type="text" placeholder="Doğru Cevap Seç" value="" style="margin-left:175px;" size="46">
+                        <br /><br />
+
+
+                        <input id="author" name="Question3" type="text" placeholder="Soru 3" value="" size="98">
+                    </p>
+
+                    <p class="comment-form-email"><input id="email" name="Question31" type="text" placeholder="A)" value="" size="46"> <input id="email" name="Question32" type="text" placeholder="B)" value="" size="46"></p>
+                    <p class="comment-form-url">
+                        <input id="url" name="Question33" type="text" placeholder="C)" value="" size="46"> <input id="email" name="Question34" type="text" placeholder="D)" value="" size="46">
+                        <br /><br />
+                        <input id="email" name="QuestionAns3" type="text" placeholder="Doğru Cevap Seç" value="" style="margin-left:175px;" size="46">
+
+                        <br /><br />
+
+
+
+                    <p class="comment-form-email"><input id="email" name="Question41" type="text" placeholder="A)" value="" size="46"> <input id="email" name="Question42" type="text" placeholder="B)" value="" size="46"></p>
+                    <p class="comment-form-url">
+                        <input id="url" name="Question43" type="text" placeholder="C)" value="" size="46"> <input id="email" name="Question44" type="text" placeholder="D)" value="" disabled="disabled" size="46">
+                        <br /><br />
+                        <input id="email" name="QuestionAns4" type="text" placeholder="Doğru Cevap Seç" value="" style="margin-left:175px;" size="46">
+                        <br />
+
+
+
+
+                        <div style="margin-top:15px">
+                            <button class=" btn btn-info" id="Button1">Sınavı  Tamamla</button>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+</form>
+<script>
+    $("#Button1").click(function () {
+        if (QueIdAndAnswer.length != 4) {
+            $("#answerAlert").show();
+        }
+        else {
+            $("#answerAlert").hide(function () {
+                var data = QueIdAndAnswer.toString();
+
+                $.ajax({
+                    url: "//CheckAnswer" + "?QueIdAndAnswer=" + data + "&questionID=" + questionID,
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (answer) {
+                        var jsonObj = $.parseJSON(answer);
+
+                        $.each(jsonObj, function (i, item) {
+                            console.log(item.IsTrue)
+                            if (item.IsTrue)
+                                $("#" + item.QuestionId.toString() + item.TrueAnswer.toString()).css('background-color', '#009900');
+                            else
+                                $("#" + item.QuestionId.toString() + item.TrueAnswer.toString()).css('background-color', '#FF0000');
+
+                        })
+                    },
+                    error: function () {
+                        alert("Hata..");
+                    }
+                });
+
+
+            });
+        }
+    });
+    </script>

@@ -1,0 +1,113 @@
+﻿@model sınav.Data.Model.Question
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<form class="form-group" method="post">
+
+    <div></div>
+    <div id="commentsAdd">
+        <div id="respond" class="box m-t-6">
+            <div id="respond" class="comment-respond">
+
+
+                <a rel="nofollow" id="cancel-comment-reply-link" href="/html-tablo-olusturma-nasil-yapilir/#respond" style="display:none;">Cevabı iptal et</a>
+                <p class="comment-form-comment"><textarea id="comment" name="comment" cols="100" rows="8" aria-required="true" placeholder="Comment Text*"></textarea></p><p class="comment-form-author">
+
+                    <input id="author" name="Question1" type="text" placeholder="Soru 1" value="" size="98">
+                </p>
+
+                <p class="comment-form-email"><input id="email" name="Question11" type="text" placeholder="A)" value="" size="46"> <input id="email" name="Question12" type="text" placeholder="B)" value="" size="46"></p>
+                <p class="comment-form-url">
+                    <input id="url" name="Question13" type="text" placeholder="Question13" value="" size="46"> <input id="email" name="Question14" type="text" placeholder="D)" value="" size="46">
+                    <br /><br />
+                          <h3 style="margin-left:175px; font-size:'24;">
+                              @Html.DropDownListFor(x => x.QuestionAns1, new[] {
+new SelectListItem() {Text = "Seçenek A", Value = "A"},
+new SelectListItem() {Text = "Seçenek B", Value = "B"},
+new SelectListItem() {Text = "Seçenek C", Value = "C"},
+new SelectListItem() {Text = "Seçenek D", Value = "D"}
+}, "Cevabı Seç")
+                          </h3>
+
+
+                    <br /><br />
+
+                    <input id="author" name="Question2" type="text" placeholder="Soru 2" value="" size="98">
+                </p>
+
+                <p class="comment-form-email"><input id="email" name="Question21" type="text" placeholder="A)" value="" size="46"> <input id="email" name="Question22" type="text" placeholder="B)" value="" size="46"></p>
+                <p class="comment-form-url">
+                    <input id="url" name="Question23" type="text" placeholder="C)" value="" size="46"> <input id="email" name="Question24" type="text" placeholder="D)" value="" size="46">
+
+                    <br /><br />
+                          <h3 style="margin-left:175px; font-size:'24;">
+                              @Html.DropDownListFor(x => x.QuestionAns2, new[] {
+new SelectListItem() {Text = "Seçenek A", Value = "A"},
+new SelectListItem() {Text = "Seçenek B", Value = "B"},
+new SelectListItem() {Text = "Seçenek C", Value = "C"},
+new SelectListItem() {Text = "Seçenek D", Value = "D"}
+}, "Cevabı Seç")
+                          </h3>
+                    <br /><br />
+
+
+                    <input id="author" name="Question3" type="text" placeholder="Soru 3" value="" size="98">
+                </p>
+
+                <p class="comment-form-email"><input id="email" name="Question31" type="text" placeholder="A)" value="" size="46"> <input id="email" name="Question32" type="text" placeholder="B)" value="" size="46"></p>
+                <p class="comment-form-url">
+                    <input id="url" name="Question33" type="text" placeholder="C)" value="" size="46"> <input id="email" name="Question34" type="text" placeholder="D)" value="" size="46">
+                    <br /><br />
+                          <h3 style="margin-left:175px; font-size:'24;" >
+                              @Html.DropDownListFor(x => x.QuestionAns3, new[] {
+new SelectListItem() {Text = "Seçenek A", Value = "A"},
+new SelectListItem() {Text = "Seçenek B", Value = "B"},
+new SelectListItem() {Text = "Seçenek C", Value = "C"},
+new SelectListItem() {Text = "Seçenek D", Value = "D"}
+}, "Cevabı Seç")
+                          </h3>
+
+                    <br /><br />
+
+                   
+
+
+
+                <p class="comment-form-email"><input id="email" name="Question41" type="text" placeholder="A)" value="" size="46"> <input id="email" name="Question42" type="text" placeholder="B)" value="" size="46"></p>
+                <p class="comment-form-url">
+                    <input id="url" name="Question43" type="text" placeholder="C)" value="" size="46"> <input id="email" name="Question44" type="text" placeholder="D)" value="" size="46">
+                    <br /><br />
+                          <h3 style="margin-left:175px; font-size:'24;">
+                              @Html.DropDownListFor(x => x.QuestionAns4, new[] {
+new SelectListItem() {Text = "Seçenek A", Value = "A"},
+new SelectListItem() {Text = "Seçenek B", Value = "B"},
+new SelectListItem() {Text = "Seçenek C", Value = "C"},
+new SelectListItem() {Text = "Seçenek D", Value = "D"}
+}, "Cevabı Seç")
+                          </h3>
+                    <br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div style="margin-top:15px">
+                        <button class=" btn btn-info" id="Button1">Add Worker</button>
+                    </div>
+
+</div>
+        </div>
+    </div>
+</form>

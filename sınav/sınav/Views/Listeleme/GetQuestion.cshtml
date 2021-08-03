@@ -1,0 +1,129 @@
+﻿@model sınav.Data.Model.Question
+@{
+    ViewData["Title"] = "GetQuestion";
+}
+
+
+
+@using (Html.BeginForm("Index", "Listeleme", FormMethod.Post))
+{
+    <div style="margin-bottom:15px"></div>
+    <div class="form-group">
+        
+        @Html.DisplayFor(c => c.QuestionDesc, new { @class = "form-control" })
+
+       
+    </div>
+    <div class="form-group">
+        <div style="width:350px; height:750px; float:left">
+
+
+            <a > 1) @Html.DisplayFor(c => c.Question1, new { @class = "" })</a>
+            <br /><br />
+            A) @Html.TextBoxFor(c => c.Question11, new { @class = "" })
+            <br /><br />
+            B) @Html.TextBoxFor(c => c.Question12, new { @class = "" })
+            <br /><br />
+            C) @Html.TextBoxFor(c => c.Question13, new { @class = "" })
+            <br /><br />
+            D) @Html.TextBoxFor(c => c.Question14, new { @class = "" })
+            <br />
+            <br />  
+            <br /><br /><br /><br />
+            <a> 3) @Html.DisplayFor(c => c.Question3, new { @class = "" })</a>
+            <br /><br />
+            A) @Html.TextBoxFor(c => c.Question31, new { @class = "" })
+            <br /><br />
+            B) @Html.TextBoxFor(c => c.Question32, new { @class = "" })
+            <br /><br />
+            C) @Html.TextBoxFor(c => c.Question33, new { @class = "" })
+            <br /><br />
+            D) @Html.TextBoxFor(c => c.Question34, new { @class = "" })
+            <br />
+        </div>
+
+        <div style="margin-left:550px; width:250px; height:750px;">
+            <a>
+                2)  @Html.DisplayFor(c => c.Question2, new { @class = "" })
+            </a> <br /><br />
+            A) @Html.TextBoxFor(c => c.Question21, new { @class = "" })
+            <br /> <br />
+            B) @Html.TextBoxFor(c => c.Question22, new { @class = "" })
+            <br /> <br />
+            C) @Html.TextBoxFor(c => c.Question23, new { @class = "" })
+            <br /> <br />
+            D) @Html.TextBoxFor(c => c.Question24, new { @class = "" })
+            <br /><br /><br /><br /><br />
+
+
+            <a>
+              4 ) @Html.DisplayFor(c => c.Question4, new { @class = "" })
+            </a> <br /><br />
+            A) @Html.TextBoxFor(c => c.Question41, new { @class = "" })
+            <br /> <br />
+            B) @Html.TextBoxFor(c => c.Question42, new { @class = "" })
+            <br /> <br />
+            C) @Html.TextBoxFor(c => c.Question43, new { @class = "" })
+            <br /> <br />
+            D) @Html.TextBoxFor(c => c.Question44, new { @class = "" })
+        </div>
+    </div>
+
+
+
+    
+    <div>
+    
+
+            <button class="btn btn-warning" id="Button1" style="margin-left:350px;"> Tamamla</button>
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    $("#Button1").click(function () {
+        if (QueIdAndAnswer.length != 4) {
+            $("#answerAlert").show();
+        }
+        else {
+            $("#answerAlert").hide(function () {
+                var data = QueIdAndAnswer.toString();
+
+                $.ajax({
+                    url: "//CheckAnswer" + "?QueIdAndAnswer=" + data + "&questionID=" + questionID,
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (answer) {
+                        var jsonObj = $.parseJSON(answer);
+
+                        $.each(jsonObj, function (i, item) {
+                            console.log(item.IsTrue)
+                            if (item.IsTrue)
+                                $("#" + item.QuestionId.toString() + item.TrueAnswer.toString()).css('background-color', '#009900');
+                            else
+                                $("#" + item.QuestionId.toString() + item.TrueAnswer.toString()).css('background-color', '#FF0000');
+
+                        })
+                    },
+                    error: function () {
+                        alert("Hata..");
+                    }
+                });
+
+
+            });
+        }
+    });
+</script>

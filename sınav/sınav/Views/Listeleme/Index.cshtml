@@ -1,0 +1,39 @@
+﻿@model List<sınav.Data.Model.Question>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>#</th>
+        <th>Başlık</th>
+        <th>Tarih</th>
+
+        <th>Sil</th>
+
+        <th>Başla</th>
+    </tr>
+
+    @foreach (var question in Model)
+    {
+    <tr>
+        <td>@question.QuestionID</td>
+        <td>@question.QuestionDesc</td>
+        <td>@question.Tarih</td>
+
+
+
+        <td>@Html.ActionLink("Sil", "DeleteQuestion", new { id = question.QuestionID }, new { @class = "btn btn-danger ", onclick = "return confirm('silmek istediğinizden emin misiniz? ')" })</td>
+
+        <td><a href="/Listeleme/GetQuestion/@question.QuestionID" class="btn btn-success">Sınavı Çöz</a></td>
+
+
+    </tr>
+    }
+</table>
+<a href="/Listeleme/AddQuestion/" class="btn btn-primary">Soru Ekle </a>
+
+
